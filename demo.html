@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<body>
+<div class="movie-msg">
+    <input type="text" placeholder="请输入电影id" class="movie-id">
+    <input type="submit" class="movie">
+    <p class="movie-title"></p>
+    <img src="" class="movie-img">
+    <p class="movie-summary"></p>
+</div>
+<div class="book-msg">
+    <input type="text" placeholder="请输入图书id" class="book-id">
+    <input type="submit" class="book">
+    <p class="book-title"></p>
+    <img src="" class="book-img">
+    <p class="book-summary"></p>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $('.movie').on('click',function (e) {
+        e.preventDefault();
+        var _url = $('.movie-id').val()||'';
+        if(_url!=''){
+            $.ajax({
+                url:'https://api.douban.com/v2/movie/subject/'+_url,
+                method:'get',
+                dataType:'jsonp'
+            }).done(function (res) {
+                console.log(res)
+                $('.movie-title').text(res.title);
+                $('.movie-img').attr('src',res.images.large);
+                $('.movie-summary').text(res.summary);
+            }).catch(function (rsp) {
+                console.log(rsp)
+                $('.movie-title').text(rsp.statusText)
+            })
+        }else {
+            console.log('no url')
+        }
+    })
+
+    $('.book').on('click',function (e) {
+        e.preventDefault();
+        var _url = $('.book-id').val()||'';
+        if(_url!=''){
+            $.ajax({
+                url:'https://api.douban.com/v2/book/'+_url,
+                method:'get',
+                dataType:'jsonp'
+            }).done(function (res) {
+                console.log(res)
+                $('.book-title').text(res.title);
+                $('.book-img').attr('src',res.images.large);
+                $('.book-summary').text(res.summary)
+            })
+        }
+    })
+
+</script>
+</html>
