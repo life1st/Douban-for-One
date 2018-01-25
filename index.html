@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="common/style/css/main.css">
 </head>
 <body>
-<header>
+<header id="header">
 </header>
 <div class="main-content">
     <div class="left-aside">
@@ -80,5 +80,11 @@
 </div>
 <footer>
 </footer>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $.get('./common/html/header.html').then((res) => {
+        $('#header').html(res)
+    })
+</script>
 </body>
 </html>
