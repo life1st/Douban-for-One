@@ -1,16 +1,21 @@
 <template>
   <div id="app">
-    <head></head>
+    <v-header></v-header>
+    <v-index></v-index>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
-import head from './components/head'
-
+import vHeader from './components/head'
+import vFooter from './components/foot'
+import vIndex from './components/index'
 export default {
   name: 'app',
   components: {
-    head,
+    vHeader,
+    vFooter,
+    vIndex
   }
 }
 </script>
@@ -18,12 +23,4 @@ export default {
 <style lang='less'>
 @import './assets/css/main.less';
 
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
