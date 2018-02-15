@@ -9,13 +9,12 @@
 <script>
 import vHeader from './components/head'
 import vFooter from './components/foot'
-import vIndex from './components/index'
+
 export default {
   name: 'app',
   components: {
     vHeader,
     vFooter,
-    vIndex
   }
 }
 </script>

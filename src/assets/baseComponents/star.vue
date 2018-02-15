@@ -9,7 +9,7 @@
     name: 'star',
     props: {
       score: {
-        type: Object,
+        type: Number,
         default() {
           return 5
         }

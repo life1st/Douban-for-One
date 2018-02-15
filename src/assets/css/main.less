@@ -3,8 +3,9 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 body { background:#fff;font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; }
 td,th,caption { font-size:14px; }
 address, caption, cite, code, dfn, em, strong, var { font-style:normal; font-weight:normal;}
-a { text-decoration:underline;color: #666;}
-a:hover { color: #e74f4d; transition: color .2s; text-decoration: none;}
+//a 标签在豆瓣风格里 默认位置太多，改一下，写在下面了。
+//a { text-decoration:underline;color: #666;}
+//a:hover { color: #e74f4d; transition: color .2s; text-decoration: none;}
 img { border:none; }
 input, textarea, select, button { font:14px Verdana,Helvetica,Arial,sans-serif; }
 table { border-collapse:collapse; }
@@ -12,11 +13,22 @@ html {overflow-y: scroll;}
 ul {list-style: none;}
 /*other*/
 .fr {
-    float: right;
+  float: right;
 }
 .cl {
-    clear: both;
+  clear: both;
 }
 .ib {
-    display: inline-block;
+  display: inline-block;
+}
+a {
+  color: #37a;
+  text-decoration: none;
+  &:visited {
+    color: #669;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #37a;
+  }
 }

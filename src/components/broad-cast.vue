@@ -13,6 +13,7 @@
             <blockquote class="content">
               <star></star><span class="text">{{item.text}}</span>
             </blockquote>
+            <subject></subject>
           </div>
         </div>
       </li>
@@ -22,6 +23,7 @@
 
 <script>
   import star from '../assets/baseComponents/star'
+  import subject from './subject'
 
   export default {
     name: 'broadcast',
@@ -54,7 +56,8 @@
       }
     },
     components: {
-      star
+      star,
+      subject
     }
   }
 </script>
@@ -99,7 +102,7 @@
     }
     .user-detail {
       .content {
-        margin-top: 10px;
+        margin: 10px 0;
       }
     }
   }

@@ -84,6 +84,7 @@
       text-decoration: none;
       &:hover {
         color: #fff;
+        background: none;
       }
     }
   }
