@@ -27,6 +27,7 @@
         </div>
         <div class="unlogin">
           <a href="#">登录</a>
+          <router-link to="/">个人主页</router-link>
         </div>
       </div>
     </div>
