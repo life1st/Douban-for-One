@@ -4,7 +4,7 @@
       <nav class="main-nav">
         <ul>
           <li>
-            <a href="#">广播</a>
+            <router-link to="/broad-cast">广播</router-link>
           </li>
           <li>
             <a href="#">相册</a>
@@ -35,17 +35,19 @@
 
 <script>
   export default {
-    name: 'head',
+    name: 'vHead',
     data() {
       return {
-        islogin: false
+        isLogin: false
       }
     },
     props: {
       user: {
         type: Object,
         default() {
-          return ''
+          return {
+            user: ''
+          }
         }
       }
     },
