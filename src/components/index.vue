@@ -1,6 +1,7 @@
 <template>
   <div class="index">
     <div class="left-aside">
+      <user-banner :user="user"></user-banner>
       <div class="like-content-wrap">
         <div class="content-title">
           <h2>我喜欢</h2>
@@ -30,17 +31,19 @@
           </div>
         </div>
         <div class="user-intro">
-          <div class="display-msg">
+          <div class="display-msg" v-show="!editMsg">
             <p>
-              <span>{{user.introMsg</span>
-              <span>(<a href="#">编辑</a>)</span>
+              <span>{{user.introMsg}}</span>
+              <span>(<a href="#" @click="editUserIntro">编辑</a>)</span>
             </p>
           </div>
-          <div class="edit-msg">
+          <div class="edit-msg" v-show="editMsg">
             <form action="#">
-              <textarea></textarea>
-              <input type="submit" class="submit" value="提交">
-              <input type="submit" class="cancel" value="取消">
+              <textarea v-model="user.introMsg"></textarea>
+              <input type="submit" class="submit" value="提交"
+                     @click.prevent.stop="updateUserIntroMsg">
+              <input type="button" class="cancel" value="取消"
+                     @click.prevent.stop="cancelUpdateUserIntroMsg">
             </form>
           </div>
         </div>
@@ -53,10 +56,16 @@
           </div>
         </div>
         <ul class="radio-list">
-          <li>
+          <li v-for="radio in radioList" :key="radio.id">
             <div class="item-title">
               <!--{{item.type}}看过/读过-->
-              <p>看过<a href="https://movie.douban.com/subject/1297518/" target="_blank">九品芝麻官&lrm; (1994)</a>♥♥♥</p>
+              <p>看过
+                <a :href="radioLink" target="_blank">{{radio.name}}</a>
+                <star
+                    :rating-point="radio.rating"
+                    :action="action"
+                ></star>
+              </p>
             </div>
             <p class="item-content">{{item.content</p>
             <p class="item-info">
@@ -71,8 +80,60 @@
 </template>
 
 <script>
+  import star from '../assets/baseComponents/star'
+  import userBanner from '../assets/baseComponents/user-banner'
+
   export default {
     name: 'vIndex',
+    data() {
+      return {
+        editMsg: false,
+        user: {
+          name: '测试用户名',
+          avatar: 'https://img3.doubanio.com/icon/ul84565043-2.jpg',
+          desc: '测试描述',
+          introMsg: '测试intro信息'
+        },
+        radioList: [
+          {
+            name: '九品芝麻官 (1994)',
+            id: 1297518,
+            rating: 3
+          }
+        ],
+        action: {
+          type: 'gold',
+        }
+      }
+    },
+    methods: {
+      editUserIntro() {
+        this.editMsg = true
+      },
+      updateUserIntroMsg() {
+        this.editMsg = false
+        let introMsg = this.user.introMsg
+        console.log(introMsg)
+      },
+      cancelUpdateUserIntroMsg() {
+        this.editMsg = false
+      },
+      radioLink(radio) {
+        let baseURL = {
+          'movie': 'https://movie.douban.com/',
+          'book': 'https://book.douban.com/'
+        }
+
+        return `${baseURL[radio.type]}${radio.id}`
+      },
+    },
+    computed: {
+
+    },
+    components: {
+      star,
+      userBanner
+    }
   }
 </script>
 
@@ -136,7 +197,6 @@
         }
       }
       .edit-msg {
-        display: none;
         textarea {
           width: 100%;
           height: 3.5em;

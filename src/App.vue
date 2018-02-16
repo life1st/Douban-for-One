@@ -22,6 +22,6 @@ export default {
 <style lang='less'>
 @import './assets/css/main.less';
 #app {
-  position: relative;
+  /*position: relative;*/
 }
 </style>

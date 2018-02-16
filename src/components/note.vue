@@ -105,6 +105,7 @@
       word-wrap: break-word;
       white-space: pre-wrap;
     }
+    // 这是控制 note 内容区域的图片大小，防止内容自带样式权重太高所以使用 important
     img {
       max-width: 665px !important;
       display: block;

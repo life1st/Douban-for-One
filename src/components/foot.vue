@@ -19,7 +19,7 @@
     margin: 0 auto;
     padding: 4px 0;
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     left: 0;
     right: 0;
     font-size: 12px;

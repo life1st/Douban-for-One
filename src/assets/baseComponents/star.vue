@@ -23,12 +23,9 @@
         }
       },
       ratingPoint: {
-        type: Object,
+        type: Number,
         default() {
-          return {
-            people: 8,
-            personal: 5
-          }
+          return 5
         }
       },
       action: {
@@ -43,7 +40,7 @@
     },
     methods: {
       starType(i) {
-        let point = this.ratingPoint.people / 2
+        let point = this.ratingPoint
 
         if (i < Math.floor(point)) {
           return 'gold'
