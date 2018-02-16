@@ -42,9 +42,9 @@
       starType(i) {
         let point = this.ratingPoint
 
-        if (i < Math.floor(point)) {
+        if (i <= Math.floor(point)) {
           return 'gold'
-        } else if (i === Math.floor(point)) {
+        } else if (i === Math.floor(point) + 1) {
           if (point % 1 === 0) {
             return 'gold'
           } else {

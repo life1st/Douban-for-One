@@ -45,7 +45,6 @@
     methods: {
       updateUserDesc() {
         this.editDesc = false
-        alert('并没有修改')
       },
       cancelUpdateUserDesc() {
         this.editDesc = false

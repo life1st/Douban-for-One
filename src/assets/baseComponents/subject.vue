@@ -8,7 +8,7 @@
     <div class="content">
       <div class="title">
         <a :href="subjectLink">{{subject.name}}</a>
-        <star :action="action" :rating-point="ratingPoint"></star>
+        <star :action="action" :rating-point="subject.rating"></star>
       </div>
       <div class="desc">
         {{subject.desc}}
@@ -52,9 +52,6 @@
           type: 'gold',
           showNum: true
         },
-        ratingPoint: {
-          people: this.subject.rating
-        }
       }
     },
     computed: {

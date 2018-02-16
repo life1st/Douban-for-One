@@ -12,7 +12,7 @@
               <span class="operation">{{operation}}</span>
             </p>
             <blockquote class="content">
-              <star :rating-point="item.ratingPoint"></star>
+              <star :rating-point="item.rating"></star>
               <span class="text">{{item.text}}</span>
             </blockquote>
             <subject :subject="item.subject"></subject>
@@ -51,9 +51,6 @@
             rating: 5,
             text: '评价内容',
             time: '2月15日',
-            ratingPoint: {
-              personal: 5
-            },
             subject: {
               type: 'movie',
               id: '24875534',

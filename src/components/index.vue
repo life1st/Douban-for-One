@@ -4,7 +4,9 @@
       <user-banner :user="user"></user-banner>
       <div class="like-content-wrap">
         <div class="content-title">
-          <h2>我喜欢</h2>
+          <h2>
+            <i class="icon"></i>
+            我喜欢</h2>
           <div class="all">
             (<a href="#">全部</a>)
           </div>
@@ -52,8 +54,9 @@
         <div class="content-title">
           <h2>我的广播</h2>
           <div class="all">
-            (<a href="#">全部</a>)
+            (<router-link to="/broad-cast">全部</router-link>)
           </div>
+
         </div>
         <ul class="radio-list">
           <li v-for="radio in radioList" :key="radio.id">
@@ -98,7 +101,7 @@
           {
             name: '九品芝麻官 (1994)',
             id: 1297518,
-            rating: 3
+            rating: 3.4
           }
         ],
         action: {
@@ -245,6 +248,15 @@
       }
     }
     .like-content-wrap {
+      .content-title {
+        .icon {
+          display: inline-block;
+          vertical-align: baseline;
+          width: 13px;
+          height: 13px;
+          background: url("../assets/img/index/red-heart.gif") no-repeat center;
+        }
+      }
       .content {
         ul {
           list-style: none;
