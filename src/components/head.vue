@@ -7,10 +7,10 @@
             <router-link to="/broad-cast">广播</router-link>
           </li>
           <li>
-            <a href="#">相册</a>
+            <router-link to="/">相册</router-link>
           </li>
           <li>
-            <a href="#">日记</a>
+            <router-link to="/note">日记</router-link>
           </li>
           <li>
             <a href="#">读书</a>
