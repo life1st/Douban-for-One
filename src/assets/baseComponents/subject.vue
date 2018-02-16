@@ -8,6 +8,7 @@
     <div class="content">
       <div class="title">
         <a :href="subjectLink">{{subject.name}}</a>
+        <star :action="action" :rating-point="ratingPoint"></star>
       </div>
       <div class="desc">
         {{subject.desc}}
@@ -22,6 +23,7 @@
 </template>
 
 <script>
+  import star from './star'
   export default {
     name: 'subject',
     props: {
@@ -30,17 +32,28 @@
         default() {
           return {
             type: 'movie',
-            id: '24875534',
-            name: '十二公民‎ (2014)',
+            id: '000000',
+            name: '测试名称‎ (2014)',
             rating: 8.2,
-            desc: '某高校模拟法庭，正就社会上不久前发生的一起真实案件展开辩论。案件的嫌疑人是某...',
+            desc: 'bababababababababababababa...',
             info: [
-              ['导演', '徐昂 Ang Xu'],
-              ['主演', '何冰 Bing He'],
+              ['导演', '** --- ++'],
+              ['主演', '** ---- ++'],
               ['类型', '剧情']
             ],
             img: 'https://img3.doubanio.com/view/status/small/public/17AluJ.webp'
           }
+        }
+      }
+    },
+    data() {
+      return {
+        action: {
+          type: 'gold',
+          showNum: true
+        },
+        ratingPoint: {
+          people: this.subject.rating
         }
       }
     },
@@ -53,6 +66,9 @@
 
         return `${baseUrl[this.subject.type]}${this.subject.id}/`
       }
+    },
+    components: {
+      star
     }
   }
 </script>
@@ -61,6 +77,7 @@
   .subject {
     background-color: #f9f9f9;
     padding: 16px 20px;
+    line-height: 1.62;
     .pic {
       float: right;
       width: 75px;
@@ -73,10 +90,14 @@
         font-size: 15px;
         margin-bottom: 4px;
       }
+      .desc {
+      }
       .info {
         margin-top: 4px;
         padding-left: 7px;
         position: relative;
+        color: #555;
+        font-size: 13px;
         &::before {
           content: '';
           height: 90%;

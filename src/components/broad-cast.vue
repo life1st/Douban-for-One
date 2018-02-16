@@ -1,19 +1,25 @@
 <template>
   <div class="broad-cast">
     <ul class="list">
-      <li v-for="(item,index) in items" :key="index" class="item">
+      <li v-for="item in items" :key="item.id" class="item">
         <div class="user-info">
           <div class="avatar">
             <img :src="user.avatar" alt="user-avatar">
           </div>
           <div class="user-detail">
             <p>
-              <a href="#" class="user-name">{{user.name}}</a><span class="operation">{{operation}}</span>
+              <a href="#" class="user-name">{{user.name}}</a>
+              <span class="operation">{{operation}}</span>
             </p>
             <blockquote class="content">
-              <star></star><span class="text">{{item.text}}</span>
+              <star :rating-point="item.ratingPoint"></star>
+              <span class="text">{{item.text}}</span>
             </blockquote>
-            <subject></subject>
+            <subject :subject="item.subject"></subject>
+            <div class="actions">
+              <span class="time">{{item.time}}</span>
+              <a href="#" class="delete" @click="deleteItem(item)">删除</a>
+            </div>
           </div>
         </div>
       </li>
@@ -23,7 +29,7 @@
 
 <script>
   import star from '../assets/baseComponents/star'
-  import subject from './subject'
+  import subject from '../assets/baseComponents/subject'
 
   export default {
     name: 'broadcast',
@@ -44,15 +50,42 @@
           {
             rating: 5,
             text: '评价内容',
-            type: 'movie',
-            id: '1292328'
+            time: '2月15日',
+            ratingPoint: {
+              personal: 5
+            },
+            subject: {
+              type: 'movie',
+              id: '24875534',
+              name: '十二公民‎ (2014) 父组件',
+              rating: 8.2,
+              desc: '某高校模拟法庭，正就社会上不久前发生的一起真实案件展开辩论。案件的嫌疑人是某...',
+              info: [
+                ['导演', '徐昂 Ang Xu'],
+                ['主演', '何冰 Bing He'],
+                ['类型', '剧情']
+              ],
+              img: 'https://img3.doubanio.com/view/status/small/public/17AluJ.webp'
+            }
           }
         ]
       }
     },
     computed: {
       operation() {
+/*        let type = {
+          'movie': '看过',
+          'book': '读过'
+        }*/
+
+        // return `${type[this.item.type]}`
         return '看过'
+      }
+    },
+    methods: {
+      deleteItem(item) {
+        console.log(item)
+        alert('假的删除')
       }
     },
     components: {
@@ -97,12 +130,18 @@
       }
     }
     .operation {
-      /*color: @base-text-color;*/
       color: #9D9D9D;
     }
     .user-detail {
       .content {
         margin: 10px 0;
+      }
+      .actions {
+        margin-top: 20px;
+        .time {
+          color: #999;
+          margin-right: 1.5em;
+        }
       }
     }
   }
