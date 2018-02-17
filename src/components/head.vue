@@ -4,7 +4,7 @@
       <nav class="main-nav">
         <ul>
           <li>
-            <router-link to="/broad-cast">广播</router-link>
+            <router-link to="/broadcast">广播</router-link>
           </li>
           <li>
             <router-link to="/">相册</router-link>
@@ -17,6 +17,9 @@
           </li>
           <li>
             <a href="#">电影</a>
+          </li>
+          <li>
+            <a href="#">豆列</a>
           </li>
         </ul>
       </nav>

@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import index from './components/index'
 import broadCast from './components/broad-cast'
 import note from './components/note'
-
+import subject from './components/subject'
 Vue.use(Router)
 
 export default new Router({
@@ -24,7 +24,7 @@ export default new Router({
       component: index
     },
     {
-      path: '/broad-cast',
+      path: '/broadcast',
       name: 'broadCast',
       component: broadCast
     },
@@ -32,6 +32,11 @@ export default new Router({
       path: '/note',
       name: 'note',
       component: note
+    },
+    {
+      path: '/subject',
+      name: 'subject',
+      component: subject
     }
   ]
 })

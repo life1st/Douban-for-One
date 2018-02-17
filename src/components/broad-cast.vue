@@ -29,7 +29,7 @@
 
 <script>
   import star from '../assets/baseComponents/star'
-  import subject from '../assets/baseComponents/subject'
+  import subject from '../assets/baseComponents/subject-card'
 
   export default {
     name: 'broadcast',

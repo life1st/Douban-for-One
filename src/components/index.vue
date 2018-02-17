@@ -61,9 +61,10 @@
         <ul class="radio-list">
           <li v-for="radio in radioList" :key="radio.id">
             <div class="item-title">
-              <!--{{item.type}}看过/读过-->
-              <p>看过
-                <a :href="radioLink" target="_blank">{{radio.name}}</a>
+              <!--{{}}看过/读过-->
+              <p>{{itemType(radio)}}
+                <a :href="radioLink(radio)" target="_blank">{{radio.name}}</a>
+                <!--<router-link to="" target="_blank">{{radio.name}}</router-link>-->
                 <star
                     :rating-point="radio.rating"
                     :action="action"
@@ -100,6 +101,7 @@
         radioList: [
           {
             name: '九品芝麻官 (1994)',
+            type: 'movie',
             id: 1297518,
             rating: 3.4
           }
@@ -123,12 +125,21 @@
       },
       radioLink(radio) {
         let baseURL = {
-          'movie': 'https://movie.douban.com/',
-          'book': 'https://book.douban.com/'
+          'movie': 'https://movie.douban.com',
+          'book': 'https://book.douban.com'
         }
 
-        return `${baseURL[radio.type]}${radio.id}`
+        return `${baseURL[radio.type]}/subject/${radio.id}`
       },
+      itemType(item) {
+        let type = item.type
+        let map = {
+          'movie': '看过',
+          'book': '读过'
+        }
+
+        return map[type]
+      }
     },
     computed: {
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="subject">
+  <div class="subject-card">
     <div class="pic">
       <a :href="subjectLink">
         <img :src="subject.img" :alt="subject.type">
@@ -25,7 +25,7 @@
 <script>
   import star from './star'
   export default {
-    name: 'subject',
+    name: 'subjectCard',
     props: {
       subject: {
         type: Object,
@@ -71,7 +71,7 @@
 </script>
 
 <style scoped lang="less">
-  .subject {
+  .subject-card {
     background-color: #f9f9f9;
     padding: 16px 20px;
     line-height: 1.62;
