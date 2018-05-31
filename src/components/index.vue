@@ -6,16 +6,17 @@
         <div class="content-title">
           <h2>
             <i class="icon"></i>
-            我喜欢</h2>
+            我的日记</h2>
           <div class="all">
-            (<a href="#">全部</a>)
+            (<router-link to="/notes">全部</router-link>)
           </div>
         </div>
         <div class="content">
           <ul>
-            <li>
-              <a href="#">{{content.title</a>
-              <span>{{content.time</span>
+            <li v-for="(content, key) in contents" :key="key" class="cl">
+              <router-link :to="`/note/${key}`">
+                {{content.title}}</router-link>
+              <span>{{content.time}}</span>
             </li>
           </ul>
         </div>
@@ -29,7 +30,7 @@
           </div>
           <div class="user-info">
             常居:&nbsp;<a href="https://www.douban.com/location/chongqing/">重庆</a><br>
-            <div class="pl">LIFE_1st <br> 2014-03-08 加入</div>
+            <div class="pl">{{userName}} <br> 2014-03-08 加入</div>
           </div>
         </div>
         <div class="user-intro">
@@ -54,7 +55,7 @@
         <div class="content-title">
           <h2>我的广播</h2>
           <div class="all">
-            (<router-link to="/broad-cast">全部</router-link>)
+            (<router-link to="/broadcast">全部</router-link>)
           </div>
 
         </div>
@@ -71,9 +72,9 @@
                 ></star>
               </p>
             </div>
-            <p class="item-content">{{item.content</p>
+            <p class="item-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda, dolores doloribus explicabo iure necessitatibus quasi sed tempore temporibus. Autem corporis doloribus exercitationem optio unde! A ipsam maiores nesciunt sequi!</p>
             <p class="item-info">
-              {{item.markTime
+              2月15日
               <a href="#">删除</a>
             </p>
           </li>
@@ -86,6 +87,7 @@
 <script>
   import star from '../assets/baseComponents/star'
   import userBanner from '../assets/baseComponents/user-banner'
+  import { getPoster } from "../Api/poster";
 
   export default {
     name: 'vIndex',
@@ -108,7 +110,13 @@
         ],
         action: {
           type: 'gold',
-        }
+        },
+        contents: {}
+      }
+    },
+    computed: {
+      userName() {
+        return this.$store.state.userInfo.userName
       }
     },
     methods: {
@@ -141,8 +149,10 @@
         return map[type]
       }
     },
-    computed: {
-
+    created() {
+      getPoster().then(res => {
+        this.contents = res
+      })
     },
     components: {
       star,
@@ -265,7 +275,7 @@
           vertical-align: baseline;
           width: 13px;
           height: 13px;
-          background: url("../assets/img/index/red-heart.gif") no-repeat center;
+          /*background: url("../assets/img/index/red-heart.gif") no-repeat center;*/
         }
       }
       .content {

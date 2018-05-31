@@ -11,7 +11,8 @@
         <star :action="action" :rating-point="subject.rating"></star>
       </div>
       <div class="desc">
-        {{subject.desc}}
+        <!--{{subject.desc}}-->
+        {{subject.summary | cut}}
       </div>
       <ul class="info">
         <li v-for="(item,index) in subject.info" :key="index">
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-  import star from './star'
+  import star from '../../assets/baseComponents/star'
   export default {
     name: 'subjectCard',
     props: {
@@ -57,11 +58,20 @@
     computed: {
       subjectLink() {
         let baseUrl = {
-          'movie': 'https://movie.douban.com/subject/',
-          'book': 'https://book.douban.com/subject/'
+          'movie': 'https://movie.douban.com/book/',
+          'book': 'https://book.douban.com/book/'
         }
 
         return `${baseUrl[this.subject.type]}${this.subject.id}/`
+      }
+    },
+    filters: {
+      cut(text) {
+        if (text && text.length > 50) {
+          return text.slice(0,50) + '...'
+        } else {
+          return text
+        }
       }
     },
     components: {

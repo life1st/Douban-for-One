@@ -17,7 +17,13 @@ h1 {font-size: 26px; color: #494949; line-height: 1.1;}
   float: right;
 }
 .cl {
-  clear: both;
+  &:before,
+  &:after {
+    content: ' ';
+    display: block;
+    clear: both;
+    overflow: hidden;
+  }
 }
 .ib {
   display: inline-block;
@@ -32,5 +38,15 @@ a {
   &:hover {
     color: #fff;
     background-color: #37a;
+  }
+}
+button {
+  border: 1px solid #448631;
+  background: #48a193;
+  color: #fff;
+  padding: 6px 26px;
+  border-radius: 3px;
+  &:focus {
+    outline: none;
   }
 }

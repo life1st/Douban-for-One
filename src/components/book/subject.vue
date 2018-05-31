@@ -57,7 +57,7 @@
 </script>
 
 <style scoped lang="less">
-  @import "../assets/css/verb.less";
+  @import "../../assets/css/verb.less";
 
   .subject {
     width: @base-content-width;

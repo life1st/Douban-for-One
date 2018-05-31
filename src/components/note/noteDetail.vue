@@ -1,41 +1,37 @@
 <template>
   <div class="note-wrapper">
+    <div class="btns">
+      <button @click="deletePost">删除</button>
+    </div>
     <div class="note">
       <h1 class="title">
-        {{note.title}}
+        {{title}}
       </h1>
       <div class="info">
         <a class="user-avatar" :href="userLink">
           <img :src="user.avatar" alt="user header">
         </a>
         <a class="user-name" :href="userLink">
-          {{user.name}}
+          {{userInfo.userName}}
         </a>
         <span class="date">
-        {{note.date}}
+        {{time}}
       </span>
       </div>
       <div class="text"
-           v-html="note.text">
+           v-html="content">
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
+  import { getPoster, deletePoster } from "../../Api/poster";
+
   export default {
     name: 'note',
     props: {
-      note: {
-        type: Object,
-        default() {
-          return {
-            title: '测试文章标题',
-            text: '<p>测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容</p><img id="imgPicture" src="https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=a8a1ce19932397ddc274905638ebd9d2/9c16fdfaaf51f3de79164e9a96eef01f3b2979ac.jpg" url="https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=a8a1ce19932397ddc274905638ebd9d2/9c16fdfaaf51f3de79164e9a96eef01f3b2979ac.jpg"><p>测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容测试文章内容</p>',
-            date: '2018-02-12 00:37:22'
-          }
-        }
-      },
       user: {
         type: Object,
         default() {
@@ -49,13 +45,44 @@
     computed: {
       userLink() {
         return 'https://www.douban.com/people/LIFE_1st/'
+      },
+      userInfo() {
+        return this.$store.state.userInfo
+      },
+      id() {
+        return this.$route.params.id
+      }
+    },
+    data() {
+      return {
+        title: '',
+        content: '',
+        time: ''
+      }
+    },
+    created() {
+      let id = this.$route.params.id
+      console.log(id)
+      getPoster(id).then(res => {
+        console.log(res)
+        this.title = res.title
+        this.content = res.content
+        this.time = res.time
+      })
+    },
+    methods: {
+      deletePost() {
+        deletePoster(this.id).then(() => {
+          alert('删除成功')
+          this.$router.push({path: '/notes'})
+        })
       }
     }
   }
 </script>
 
-<style lang="less">
-  @import "../assets/css/verb.less";
+<style lang="less" scoped>
+  @import "../../assets/css/verb.less";
 
   .note-wrapper {
     width: @base-content-width;
@@ -113,5 +140,7 @@
       padding-bottom: 8px;
     }
   }
-
+  .btns {
+    float: right;
+  }
 </style>

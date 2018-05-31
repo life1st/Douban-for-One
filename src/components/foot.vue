@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <p>@fuck it License.</p>
+    <p>2018 Yang Jiao.</p>
   </footer>
 </template>
 
@@ -18,7 +18,7 @@
     width: @base-content-width;
     margin: 0 auto;
     padding: 4px 0;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;

@@ -1,36 +1,35 @@
 <template>
   <header>
     <div class="nav-wrap">
-      <nav class="main-nav">
+      <nav class="main-nav" v-show="isLogin">
         <ul>
           <li>
             <router-link to="/broadcast">广播</router-link>
           </li>
+          <!--<li>-->
+            <!--<router-link to="/">相册</router-link>-->
+          <!--</li>-->
           <li>
-            <router-link to="/">相册</router-link>
+            <router-link to="/notes">日记</router-link>
           </li>
           <li>
-            <router-link to="/note">日记</router-link>
+            <router-link to="/books">读书</router-link>
           </li>
           <li>
-            <a href="#">读书</a>
+            <router-link to="/movies">电影</router-link>
           </li>
-          <li>
-            <a href="#">电影</a>
-          </li>
-          <li>
-            <a href="#">豆列</a>
-          </li>
+          <!--<li>-->
+            <!--<a href="#">豆列</a>-->
+          <!--</li>-->
         </ul>
       </nav>
       <div class="user-center">
         <div class="login" v-if="isLogin">
-          <a href="#">{{user.name}}的个人主页</a>
-          <a href="#">注销</a>
+          <router-link to="/">{{userName}}的个人主页</router-link>
+          <a href="#" @click.stop="logout">注销</a>
         </div>
-        <div class="unlogin">
-          <a href="#">登录</a>
-          <router-link to="/">个人主页</router-link>
+        <div class="unlogin" v-else>
+          <router-link to="/login">登录</router-link>
         </div>
       </div>
     </div>
@@ -38,24 +37,32 @@
 </template>
 
 <script>
+  import { UPDATE_USERINFO } from "../store/keyMutations";
+  import { logout } from "../Api/login";
+
   export default {
     name: 'vHead',
     data() {
       return {
-        isLogin: false
-      }
-    },
-    props: {
-      user: {
-        type: Object,
-        default() {
-          return {
-            user: ''
-          }
-        }
       }
     },
     computed: {
+      isLogin() {
+        return !!this.$store.state.userInfo.userName
+      },
+      userName() {
+        return this.$store.state.userInfo.userName
+      }
+    },
+    methods: {
+      logout() {
+
+        logout().then(() => {
+          alert('已退出')
+          this.$store.commit(UPDATE_USERINFO, {})
+          this.$router.push('/login')
+        })
+      }
     }
   }
 </script>

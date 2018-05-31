@@ -4,7 +4,7 @@
       <img :src="user.avatar" alt="user header">
     </div>
     <h1 class="name">
-      {{user.name}}
+      {{userName}}
     </h1>
     <div class="info">
       <div class="desc" v-show="!editDesc">
@@ -14,7 +14,7 @@
         </span>
       </div>
       <div class="edit-desc" v-show="editDesc">
-        <input type="text" v-model="user.desc">
+        <input type="text" v-model="desc">
         <input type="submit" value="提交" @click="updateUserDesc">
         <input type="button" value="取消" @click="cancelUpdateUserDesc">
       </div>
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+  import { updateDesc } from "../../Api/user";
+
   export default {
     name: 'user-banner',
     props: {
@@ -37,14 +39,21 @@
         }
       }
     },
+    computed: {
+      userName() {
+        return this.$store.state.userInfo.userName
+      }
+    },
     data() {
       return {
-        editDesc: false
+        editDesc: false,
+        desc: ''
       }
     },
     methods: {
       updateUserDesc() {
         this.editDesc = false
+        updateDesc()
       },
       cancelUpdateUserDesc() {
         this.editDesc = false
